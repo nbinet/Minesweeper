@@ -1,0 +1,2 @@
+# Minesweeper
+Personnal Minesweeper game
