@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .game {
+    display: grid;
+    grid-template-columns: repeat(9, 25px);
+    grid-template-rows: repeat(9, 25px);
+    gap: 5px;
+
+    .button {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
