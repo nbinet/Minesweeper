@@ -1,63 +1,64 @@
-const set1 = "<text font-size='25' x='0' y='25' fill='blue'>1</text>";
-const set2 = "<text font-size='25' x='0' y='25' fill='green'>2</text>";
-const set3 = "<text font-size='25' x='0' y='25' fill='red'>3</text>";
-const set4 = "<text font-size='25' x='0' y='25' fill='purple'>4</text>";
-const set5 = "<text font-size='25' x='0' y='25' fill='orange'>5</text>";
-const set6 = "<text font-size='25' x='0' y='25' fill='brown'>6</text>";
-const set7 = "<text font-size='25' x='0' y='25' fill='grey'>7</text>";
-const set8 = "<text font-size='25' x='0' y='25' fill='black'>8</text>";
-const sizegrid = 9;
+const widthGrid = 9;
+const heigthGrid = 9;
+const nbCases = widthGrid * heigthGrid;
+const nbMines = 10;
 
-let grid = document.querySelector(".game");
-let mines = InsertMines();
+createGrid(widthGrid, heigthGrid);
+let mines = placeMines(nbMines, nbCases);
+console.log(mines);
+buttonPressed(mines);
 
-for (let i = 1; i <= sizegrid * sizegrid; i++) {
-  let button = "<svg id=" + i + " class='button'><rect width='25' height='25' fill='grey'></rect></svg>";
-  grid.insertAdjacentHTML("beforeend", button);
-}
 
-var buttons = document.querySelectorAll(".button");
 
-buttons.forEach(button => {
-  button.addEventListener("click", function () {
-    if (mines.includes(button.id)) {
-      GameOver();
-    } else {
-      ShowCase(button.id);
+
+
+function createGrid (widthGrid, heigthGrid) {
+  let grid = document.querySelector(".game");
+  let index = 1;
+  for (let y = 1; y <= heigthGrid; y++) {
+    for (let x = 1; x <= widthGrid; x++, index++) {
+      grid.insertAdjacentHTML("beforeend",
+        "<svg id=" + index + " data-x=" + x + " data-y=" + y + " class='button'><rect width='25' height='25' fill='grey'></rect></svg>"
+      );
     }
-  });
-});
-
-function GameOver() {
-  console.log("failed");
-}
-
-function ShowCase(i) {
-  let show = document.getElementById(i);
-  switch (minesbeside(i)) {
-    case '0': show.innerHTML = ""; break;
-    case '1': show.innerHTML = set1; break;
-    case '2': show.innerHTML = set2; break;
-    case '3': show.innerHTML = set3; break;
-    case '4': show.innerHTML = set4; break;
-    case '5': show.innerHTML = set5; break;
-    case '6': show.innerHTML = set6; break;
-    case '7': show.innerHTML = set7; break;
-    case '8': show.innerHTML = set8; break;
   }
 }
 
-function minesbeside(n) {
-  return "4";
-}
-
-function InsertMines () {
+function placeMines(nbMines, nbCases) {
   let memo = [];
-  console.log(memo.length);
-  for (i = 0; i < 10; i++) {
-    let n = (Math.ceil(Math.random() * sizegrid) * 10).toString();
+  for (let i = 0; i < nbMines; i++) {
+    let n = Math.ceil(Math.random() * nbCases).toString();
+    while (memo.includes(n)) {
+      n = Math.ceil(Math.random() * nbCases).toString();
+    }
     memo.push(n);
   }
-  console.log(memo);
+  memo.forEach(element => {
+    n = document.getElementById(element);
+    n.addEventListener("click", function() {
+      console.log("GAME OVER"); // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ GAME OVER @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    });
+  });
   return memo;
+}
+
+function buttonPressed(mines) {
+  let buttons = document.querySelectorAll(".button");
+  buttons.forEach(element => {
+    element.addEventListener("click", function() {
+      console.log(element);
+      switch (caseValue()) {
+        case 1: element.insertAdjacentHTML() break;
+        case 2: break;
+        case 3: break;
+        case 4: break; // continue here
+        case 5: break;
+        case 6: break;
+        case 7: break;
+        case 8: break;
+        default:
+          break;
+      }
+    })
+  });
 }
