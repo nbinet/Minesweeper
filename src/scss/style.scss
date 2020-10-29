@@ -20,12 +20,22 @@ body {
     }
   }
 
-  .gameover {
+  .text {
     display: none;
     position: absolute;
-    color: red;
-    top: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 100px;
+    text-align: center;
+  }
+
+  .gameover {
+    color: red;
+  }
+
+  .win {
+    color: green;
   }
 
   .restart {

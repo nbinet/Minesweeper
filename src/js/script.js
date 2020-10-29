@@ -10,6 +10,7 @@ const set8 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='black'>8
 const nbCases = 81;
 const withgrid = 9;
 const nbMines = 10;
+let checker = nbCases - nbMines;
 
 let grid = document.querySelector(".game");
 
@@ -35,9 +36,17 @@ buttons.forEach(button => {
       console.log("ever checked");
     } else {
       ShowCase(button.id, mines);
+      if (checker == 0) {
+        Win();
+      }
     }
   });
 });
+
+function Win() {
+  let win = document.querySelector(".win");
+  win.style.display = "block";
+}
 
 function GameOver() {
   let end = document.querySelector(".gameover");
@@ -49,6 +58,8 @@ function ShowCase(button, mines) {
   if (show.classList.contains("showed")) {
     console.log("ever checked");
   } else {
+    checker--;
+    console.log(checker);
     switch (minesbeside(button, mines)) {
       case 0: 
         show.innerHTML = "";
