@@ -17,6 +17,11 @@ body {
     .button {
       width: $sizeblock;
       height: $sizeblock;
+      background-color: grey;
+    }
+
+    .showed {
+      background-color: white;
     }
   }
 
