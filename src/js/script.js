@@ -1,12 +1,15 @@
 const sizeblock = 50;
-const set1 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='blue'>1</text>";
-const set2 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='green'>2</text>";
-const set3 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='red'>3</text>";
-const set4 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='purple'>4</text>";
-const set5 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='orange'>5</text>";
-const set6 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='brown'>6</text>";
-const set7 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='grey'>7</text>";
-const set8 = "<text font-size='" + sizeblock + "' x='25%' y='90%' fill='black'>8</text>";
+const set1 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='blue'>1</text>";
+const set2 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='green'>2</text>";
+const set3 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='red'>3</text>";
+const set4 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='purple'>4</text>";
+const set5 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='orange'>5</text>";
+const set6 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='brown'>6</text>";
+const set7 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='grey'>7</text>";
+const set8 = "<text font-size='" + sizeblock + "' x='-25%' y='20' fill='black'>8</text>";
+
+const svgMine = "<circle cx='0' cy='0' r='20' fill='black' /><ellipse cx='0' cy='0' rx='25' ry='2.5' /><circle cx='0' cy='0' r='2' fill='white' /><polygon points='-2.5 -10, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' /><polygon points='-2.5 -14, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' transform='rotate(45)' /><polygon points='-2.5 -14, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' transform='rotate(-45)' /><polygon points='-2.5 -14, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' transform='rotate(180)' /><polygon points='-2.5 -14, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' transform='rotate(225)' /><polygon points='-2.5 -14, 2.5 -14, 0 -24' fill='white' stroke='black' stroke-width='1' stroke-linejoin='round' transform='rotate(135)' />";
+
 const nbCases = 81;
 const withgrid = 9;
 const nbMines = 10;
@@ -17,7 +20,7 @@ let grid = document.querySelector(".game");
 var mines = InsertMines();
 
 for (let i = 1; i <= nbCases; i++) {
-  let button = "<svg id=" + i + " class='button'><rect width='" + sizeblock + "' height='" + sizeblock + "' fill='grey'></rect></svg>";
+  let button = "<svg id=" + i + " class='button' viewBox='-25 -25 50 50'></svg>";
   grid.insertAdjacentHTML("beforeend", button);
 }
 
@@ -31,7 +34,7 @@ restart.addEventListener("click", function () {
 buttons.forEach(button => {
   button.addEventListener("click", function () {
     if (mines.includes(button.id)) {
-      GameOver();
+      GameOver(mines);
     } else if (button.classList.contains("showed")) {
       console.log("ever checked");
     } else {
@@ -48,18 +51,23 @@ function Win() {
   win.style.display = "block";
 }
 
-function GameOver() {
+function GameOver(mines) {
   let end = document.querySelector(".gameover");
   end.style.display = "block";
+  mines.forEach(element => {
+    let show = document.getElementById(element);
+    show.innerHTML = svgMine;
+    console.log(element);
+  });
 }
 
 function ShowCase(button, mines) {
   let show = document.getElementById(button);
   if (show.classList.contains("showed")) {
-    console.log("ever checked");
+    //console.log("ever checked");
   } else {
     checker--;
-    console.log(checker);
+    //console.log(checker);
     switch (minesbeside(button, mines)) {
       case 0: 
         show.innerHTML = "";
