@@ -2,11 +2,10 @@ $widthgrid: 9;
 $sizeblock: auto;
 
 body {
-  height: 100vh;
+  margin: 0 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
 
   .game {
     display: grid;
@@ -14,8 +13,9 @@ body {
     grid-template-rows: repeat($widthgrid, $sizeblock);
     gap: 5px;
     align-self: center;
-    background-color: aqua;
-    width: 90vw;
+    max-height: 80vh;
+    max-width: 95vw;
+    width: 80vh;
 
     .button {
       background-color: grey;
