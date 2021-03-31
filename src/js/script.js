@@ -19,7 +19,7 @@ let grid = document.querySelector(".game");
 
 var mines = InsertMines();
 
-for (let i = 1; i <= nbCases; i++) {
+for (let i = 1; i <= nbCases; i++) {//insertion des cases
   let button = "<svg id=" + i + " class='button' viewBox='-25 -25 50 50'></svg>";
   grid.insertAdjacentHTML("beforeend", button);
 }
@@ -47,13 +47,11 @@ buttons.forEach(button => {
 });
 
 function Win() {
-  let win = document.querySelector(".win");
-  win.style.display = "block";
+  document.body.style.backgroundColor = "green";
 }
 
 function GameOver(mines) {
-  let end = document.querySelector(".gameover");
-  end.style.display = "block";
+  document.body.style.backgroundColor = "red";
   mines.forEach(element => {
     let show = document.getElementById(element);
     show.innerHTML = svgMine;
