@@ -1,11 +1,12 @@
-$sizeblock: 40px;
 $widthgrid: 9;
+$sizeblock: auto;
 
 body {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
 
   .game {
     display: grid;
@@ -13,10 +14,10 @@ body {
     grid-template-rows: repeat($widthgrid, $sizeblock);
     gap: 5px;
     align-self: center;
+    background-color: aqua;
+    width: 90vw;
 
     .button {
-      width: $sizeblock;
-      height: $sizeblock;
       background-color: grey;
     }
 
@@ -33,17 +34,5 @@ body {
     transform: translate(-50%, -50%);
     font-size: 100px;
     text-align: center;
-  }
-
-  .gameover {
-    color: red;
-  }
-
-  .win {
-    color: green;
-  }
-
-  .restart {
-    width: 10vw;
   }
 }
