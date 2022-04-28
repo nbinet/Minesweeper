@@ -1,20 +1,10 @@
 import { ShowCase } from "./showCase";
 import { svgMine } from "./ressources";
-
-const nbCases = 81;
-const withgrid = 9;
-const nbMines = 10;
-let checker = nbCases - nbMines;
+import { nbCases, nbMines } from "./const";
 
 let grid = document.querySelector(".game");
 
 let mines = InsertMines();
-
-const removeCases = (cases) => {
-  cases.forEach((element) => {
-    element.remove();
-  });
-};
 
 const gridGenerator = () => {
   for (let i = 1; i <= nbCases; i++) {
@@ -28,14 +18,18 @@ gridGenerator();
 
 var blocks = document.querySelectorAll(".block");
 
-let reload = document.querySelector(".reload");
-reload.addEventListener("click", function () {
-  location.reload();
-});
-
 const restart = () => {
   let blocksToRestart = document.querySelectorAll(".showed");
-  console.log("nb of blocks to restart :", blocksToRestart.length);
+  blocksToRestart.forEach((element) => {
+    element.innerHTML = "";
+    element.classList.remove("showed");
+  });
+  mines.forEach((element) => {
+    let mine = document.getElementById(element);
+    mine.innerHTML = "";
+  });
+  mines = InsertMines();
+  document.body.style.backgroundColor = "white";
 };
 
 let restartButton = document.querySelector(".restart");

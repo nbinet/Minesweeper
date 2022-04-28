@@ -1,20 +1,4 @@
-const nbCases = 81;
-const withgrid = 9;
-const nbMines = 10;
-let checker = nbCases - nbMines;
-
-const colorsList = [
-  "blue",
-  "green",
-  "red",
-  "purple",
-  "orange",
-  "brown",
-  "grey",
-  "black",
-];
-
-const sizeblock = 50;
+import { nbCases, nbMines, colorsList, withGrid, sizeblock } from "./const";
 
 const numberShowed = (nb) => {
   return `<text font-size='${sizeblock}' x='-25%' y='20' fill='${
@@ -23,25 +7,25 @@ const numberShowed = (nb) => {
 };
 
 function CasesBeside(n) {
-  let cases = [n - withgrid, n + withgrid];
-  if (n % withgrid == 1) {
-    cases.push(n - withgrid + 1, n + 1, n + withgrid + 1);
-  } else if (n % withgrid == 0) {
-    cases.push(n - withgrid - 1, n - 1, n + withgrid - 1);
+  let cases = [n - withGrid, n + withGrid];
+  if (n % withGrid == 1) {
+    cases.push(n - withGrid + 1, n + 1, n + withGrid + 1);
+  } else if (n % withGrid == 0) {
+    cases.push(n - withGrid - 1, n - 1, n + withGrid - 1);
   } else {
     cases.push(
-      n - withgrid + 1,
+      n - withGrid + 1,
       n + 1,
-      n + withgrid + 1,
-      n - withgrid - 1,
+      n + withGrid + 1,
+      n - withGrid - 1,
       n - 1,
-      n + withgrid - 1
+      n + withGrid - 1
     );
   }
   return cases;
 }
 
-function minesbeside(button, mines) {
+function isMinesbeside(button, mines) {
   let memo = 0;
   CasesBeside(Number(button)).forEach((element) => {
     if (mines.includes(element.toString())) {
@@ -59,14 +43,13 @@ export function ShowCase(button, mines) {
   let show = document.getElementById(button);
   if (show.classList.contains("showed")) {
   } else {
-    checker--;
-    if (checker == 0) {
+    show.classList.add("showed");
+    if (document.querySelectorAll(".showed").length == nbCases - nbMines) {
       Win();
     }
-    switch (minesbeside(button, mines)) {
+    switch (isMinesbeside(button, mines)) {
       case 0:
         show.innerHTML = "";
-        show.classList.add("showed");
         CasesBeside(Number(button)).forEach((element) => {
           if (element > 0 && element <= nbCases) {
             ShowCase(element, mines);
@@ -75,35 +58,27 @@ export function ShowCase(button, mines) {
         break;
       case 1:
         show.innerHTML = numberShowed(1);
-        show.classList.add("showed");
         break;
       case 2:
         show.innerHTML = numberShowed(2);
-        show.classList.add("showed");
         break;
       case 3:
         show.innerHTML = numberShowed(3);
-        show.classList.add("showed");
         break;
       case 4:
         show.innerHTML = numberShowed(4);
-        show.classList.add("showed");
         break;
       case 5:
         show.innerHTML = numberShowed(5);
-        show.classList.add("showed");
         break;
       case 6:
         show.innerHTML = numberShowed(6);
-        show.classList.add("showed");
         break;
       case 7:
         show.innerHTML = numberShowed(7);
-        show.classList.add("showed");
         break;
       case 8:
         show.innerHTML = numberShowed(8);
-        show.classList.add("showed");
         break;
     }
   }
