@@ -41,9 +41,7 @@ blocks.forEach((block) => {
   block.addEventListener("click", function () {
     if (mines.includes(block.id)) {
       GameOver(mines);
-    } else if (block.classList.contains("showed")) {
-      console.log("ever checked");
-    } else {
+    } else if (!block.classList.contains("showed")) {
       ShowCase(block.id, mines);
     }
   });
@@ -54,7 +52,6 @@ function GameOver(mines) {
   mines.forEach((element) => {
     let show = document.getElementById(element);
     show.innerHTML = svgMine;
-    console.log(element);
   });
 }
 
