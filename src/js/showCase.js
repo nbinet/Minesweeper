@@ -28,7 +28,8 @@ function isMinesbeside(button, mines) {
 }
 
 function Win() {
-    document.body.style.backgroundColor = "green";
+    let winPop = document.querySelector(".win");
+    winPop.style.display = "flex";
 }
 
 export function ShowCase(button, mines) {

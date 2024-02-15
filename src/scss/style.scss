@@ -19,7 +19,13 @@ body {
     background-color: white;
     padding: 12px 24px;
     border-radius: 5px;
+    text-align: center;
+
+    @media screen and (max-width: 400px) {
+      width: min-content;
+    }
   }
+
 
   .game {
     display: grid;
@@ -95,6 +101,20 @@ body {
       background-color: white;
         color: #9c92ac;
     }
+  }
+
+  .pop {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 20px 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 90%;
+    border-radius: 5px;
   }
 
   background-color: #DFDBE5;

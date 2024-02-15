@@ -28,17 +28,23 @@ const restart = () => {
         mine.innerHTML = "";
     });
     mines = InsertMines();
-    document.body.style.backgroundColor = "white";
+    let popButtons = document.querySelectorAll(".pop");
+    popButtons.forEach((button) => {
+        button.style.display = "none";
+    });
 };
 
-let restartButton = document.querySelector(".restart");
-restartButton.addEventListener("click", function () {
-    restart();
+let restartButton = document.querySelectorAll(".restart");
+restartButton.forEach((button) => {
+    button.addEventListener("click", function () {
+        restart();
+    });
 });
 
 blocks.forEach((block) => {
     block.addEventListener("click", function () {
         if (mines.includes(block.id)) {
+            // blocks
             GameOver(mines);
         } else if (!block.classList.contains("showed")) {
             ShowCase(block.id, mines);
@@ -47,7 +53,8 @@ blocks.forEach((block) => {
 });
 
 function GameOver(mines) {
-    document.body.style.backgroundColor = "red";
+    let loosePop = document.querySelector(".loose");
+    loosePop.style.display = "flex";
     mines.forEach((element) => {
         let show = document.getElementById(element);
         show.innerHTML = svgMine;
